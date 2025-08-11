@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ElderEase — Senior Care & Errand Support</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#fff7f5;
+      --ink:#0f172a;
+      --muted:#64748b;
+      --accent:#ef6a3d;     /* orange like the template buttons */
+      --soft:#fde6dd;
+      --card:#ffffff;
+      --line:#e8ecf1;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; font-family:Inter,system-ui,Segoe UI,Roboto,Arial; color:var(--ink); background:linear-gradient(180deg,#fff, var(--bg));}
+
+    /* Top utility bar */
+    .top{font-size:.9rem; background:#fff; border-bottom:1px solid var(--line);}
+    .top>.wrap{max-width:1200px; margin:auto; padding:.55rem 20px; display:flex; gap:12px; justify-content:space-between; color:#64748b}
+
+    /* Header / Nav */
+    .nav{background:#fff; border-bottom:1px solid var(--line);}
+    .nav>.wrap{max-width:1200px; margin:auto; padding:14px 20px; display:flex; align-items:center; justify-content:space-between; gap:16px;}
+    .brand{display:flex; align-items:center; gap:10px}
+    .brand .logo{width:36px; height:36px; border-radius:50%; display:grid; place-items:center; background:linear-gradient(135deg,#ffe1d4,#fff3ed); color:#ef6a3d; font-weight:900}
+    .menu{display:flex; gap:22px; align-items:center}
+    .menu a{color:#0f172a; text-decoration:none; font-weight:700; font-size:.95rem}
+    .btn{display:inline-flex; align-items:center; gap:8px; border-radius:10px; padding:.75rem 1.05rem; border:1px solid var(--accent); background:var(--accent); color:#fff; font-weight:800; text-decoration:none; box-shadow:0 8px 24px rgba(239,106,61,.25)}
+    .btn.outline{background:#fff; color:var(--accent);}
+
+    /* Hero */
+    .hero{position:relative; overflow:hidden; border-bottom:1px solid var(--line);}
+    .hero>.wrap{max-width:1200px; margin:auto; padding:56px 20px 36px; display:grid; grid-template-columns:1.05fr .95fr; gap:36px; align-items:center;}
+    .eyebrow{color:#ef6a3d; font-weight:800; letter-spacing:.08em;}
+    .display{font-family:"Playfair Display", serif; font-weight:700; font-size:clamp(2.2rem,4.6vw,3.4rem); line-height:1.08; margin:.35rem 0 1rem}
+    .lead{color:var(--muted); font-size:1.05rem; max-width:60ch}
+    .cta{display:flex; gap:12px; margin-top:18px}
+    /* circular photo like template */
+    .hero-visual{position:relative; width:100%; aspect-ratio:1/1; border-radius:999px; background:radial-gradient(circle at 30% 30%, #ffe8df 0, #fff 60%); border:8px solid #f9d7c9; box-shadow:0 24px 80px rgba(239,106,61,.12); display:grid; place-items:center}
+    .hero-visual img{width:86%; height:86%; border-radius:999px; object-fit:cover; box-shadow:0 12px 30px rgba(0,0,0,.08)}
+    .hero-bullets{display:grid; grid-auto-flow:column; gap:18px; margin-top:26px}
+    .hero-bullets .point{display:flex; gap:10px; align-items:center; font-size:.92rem; color:var(--muted)}
+
+    /* Features row */
+    .features{max-width:1200px; margin:12px auto 32px; padding:0 20px; display:grid; grid-template-columns:repeat(3,1fr); gap:16px}
+    .feature{background:#fff; border:1px solid var(--line); border-radius:14px; padding:16px}
+    .feature h4{margin:0 0 6px}
+
+    /* Section */
+    section{padding:60px 20px}
+    .head{max-width:1200px; margin:0 auto 16px}
+    h2.title{font-family:"Playfair Display", serif; font-size:clamp(1.6rem,2.3vw,2.2rem); margin:0}
+    .muted{color:var(--muted)}
+
+    /* Services grid */
+    .services{max-width:1200px; margin:auto; display:grid; grid-template-columns:repeat(12,1fr); gap:18px}
+    .card{grid-column:span 4; background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px}
+    .card h3{margin:6px 0 8px}
+    .card ul{margin:0; padding-left:18px; color:var(--muted)}
+    .badge{display:inline-block; font-size:.75rem; padding:6px 10px; background:var(--soft); color:#bf4c23; border-radius:999px; margin-bottom:8px; font-weight:700}
+
+    /* Book form */
+    .book{background:#fff}
+    .book-wrap{max-width:1200px; margin:auto; display:grid; grid-template-columns:1fr 1fr; gap:26px; align-items:start}
+    .form{background:#fff; border:1px solid var(--line); border-radius:14px; padding:18px; display:grid; gap:12px}
+    .form input,.form select,.form textarea{padding:12px 14px; border:1px solid var(--line); border-radius:10px; font:inherit}
+    .form .btn{justify-content:center}
+
+    /* Footer */
+    footer{border-top:1px solid var(--line); padding:28px 20px; color:var(--muted)}
+    footer .wrap{max-width:1200px; margin:auto; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:16px}
+
+    /* Responsive */
+    @media (max-width:980px){
+      .hero>.wrap{grid-template-columns:1fr}
+      .features{grid-template-columns:1fr}
+      .services .card{grid-column:span 6}
+      .book-wrap{grid-template-columns:1fr}
+    }
+    @media (max-width:580px){
+      .services .card{grid-column:1/-1}
+      .menu{display:none}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Top bar -->
+  <div class="top">
+    <div class="wrap">
+      <span>Helpline: +91 00000 00000</span>
+      <span>care@elderease.in</span>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <div class="nav">
+    <div class="wrap">
+      <div class="brand">
+        <div class="logo">👵</div>
+        <div><strong>ElderEase</strong><div class="muted" style="font-size:.9rem">Hyperlocal Senior Support</div></div>
+      </div>
+      <div class="menu">
+        <a href="#services">Services</a>
+        <a href="#book">Book Service</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <a class="btn" href="#book">Sign In / Book</a>
+    </div>
+  </div>
+
+  <!-- Hero -->
+  <header class="hero">
+    <div class="wrap">
+      <div>
+        <div class="eyebrow">HELPLINE • 24×7</div>
+        <h1 class="display">Happiness is Peace of Mind for <em>Senior Care</em></h1>
+        <p class="lead">
+          ElderEase provides human-powered, hyperlocal errands and assistance for seniors:
+          trained, background-verified executives who handle the day-to-day with dignity and care.
+        </p>
+        <div class="cta">
+          <a class="btn" href="#book">Book Service</a>
+          <a class="btn outline" href="#services">Explore Services</a>
+        </div>
+
+        <div class="hero-bullets">
+          <div class="point">✓ Grocery & Medicines</div>
+          <div class="point">✓ Bills & Bank Assistance</div>
+          <div class="point">✓ Accompanied Visits</div>
+        </div>
+      </div>
+
+      <!-- Circular hero image (your provided image) -->
+      <div class="hero-visual">
+        <img
+          src="https://img.freepik.com/free-photo/male-social-worker-taking-care-old-woman_23-2149031313.jpg"
+          alt="Caregiver helping an elderly woman">
+      </div>
+    </div>
+  </header>
+
+  <!-- Three quick blurbs -->
+  <div class="features">
+    <div class="feature">
+      <h4>01.</h4>
+      <p class="muted">Every errand is fulfilled by trained, police-verified personnel.</p>
+    </div>
+    <div class="feature">
+      <h4>02.</h4>
+      <p class="muted">Hybrid booking: phone helpline, WhatsApp, or simple web app.</p>
+    </div>
+    <div class="feature">
+      <h4>03.</h4>
+      <p class="muted">Real-time updates and transparent pricing for families.</p>
+    </div>
+  </div>
+
+  <!-- Services -->
+  <section id="services">
+    <div class="head">
+      <h2 class="title">Our Services</h2>
+      <p class="muted">Comprehensive, hyperlocal support to enhance independence and dignity.</p>
+    </div>
+
+    <div class="services">
+      <article class="card">
+        <span class="badge">Essential Errands</span>
+        <h3>Daily Needs Made Easy</h3>
+        <ul>
+          <li>Grocery shopping & doorstep delivery</li>
+          <li>Medication pickup & delivery from verified pharmacies</li>
+          <li>Utility bill payments (online/physical)</li>
+          <li>Courier drop-off & pickup</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="badge">Companion Errands</span>
+        <h3>Accompanied Visits & Outings</h3>
+        <ul>
+          <li>Doctor appointments & medical visits (accompanied)</li>
+          <li>Bank & financial institution visits</li>
+          <li>Social outings and recreational activities</li>
+          <li>Festival/occasion-based shopping assistance</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="badge">Home Services</span>
+        <h3>In-Home Comfort & Setup</h3>
+        <ul>
+          <li>Schedule & supervise plumbers/electricians/cleaners</li>
+          <li>Basic tech help: WhatsApp, online payments, device setup</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="badge">Emergency</span>
+        <h3>Rapid Assistance</h3>
+        <ul>
+          <li>On-call support for minor health issues</li>
+          <li>Immediate alerts to emergency contacts</li>
+          <li>Ambulance & hospital coordination</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="badge">Plans</span>
+        <h3>Simple, Transparent Pricing</h3>
+        <ul>
+          <li>Basic: ₹1,299 / month • 8 errands</li>
+          <li>Standard: ₹2,499 / month • 15 errands + 1 accompanied visit</li>
+          <li>Premium: ₹4,999 / month • 30 errands + 3 accompanied visits</li>
+          <li>On-demand: ₹200 per errand (up to 1 hour)</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <span class="badge">Safety</span>
+        <h3>Built-in Trust</h3>
+        <ul>
+          <li>Police-verified IDs, uniforms, QR verification</li>
+          <li>Training in elderly care, first-aid & communication</li>
+          <li>GPS tracking + 24×7 control center</li>
+          <li>Post-service feedback & escalation</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <!-- Book Service -->
+  <section id="book" class="book">
+    <div class="book-wrap">
+      <div>
+        <div class="head">
+          <h2 class="title">Book a Service</h2>
+          <p class="muted">Tell us what you need—errands, accompanied visit, or quick help. We’ll confirm shortly.</p>
+        </div>
+        <form class="form" onsubmit="event.preventDefault(); alert('Thanks! We\\'ll reach out shortly to confirm your booking.'); this.reset();">
+          <label>Full Name
+            <input type="text" name="name" placeholder="Your name" required>
+          </label>
+          <label>Phone Number
+            <input type="tel" name="phone" placeholder="+91 XXXXX XXXXX" required>
+          </label>
+          <label>Service Type
+            <select name="type" required>
+              <option value="" disabled selected>Choose…</option>
+              <option>Essential Errands</option>
+              <option>Companion Errands</option>
+              <option>Home Services Assistance</option>
+              <option>Emergency Assistance</option>
+            </select>
+          </label>
+          <label>Details
+            <textarea name="details" rows="4" placeholder="Briefly describe the request" required></textarea>
+          </label>
+          <button class="btn" type="submit">Submit Booking</button>
+        </form>
+      </div>
+
+      <div class="hero-visual" aria-hidden="true">
+        <!-- secondary supporting photo (falls back to main if blocked) -->
+        <img src="https://img.freepik.com/free-photo/male-social-worker-taking-care-old-woman_23-2149031313.jpg" alt="Care support image">
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer id="contact">
+    <div class="wrap">
+      <div>© <span id="y"></span> ElderEase Services Pvt. Ltd.</div>
+      <div class="muted">Pune, India • care@elderease.in • +91 00000 00000</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('y').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
